@@ -1,0 +1,42 @@
+group 'com.leibangzhu'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url 'http://114.55.36.61:8087/nexus/content/groups/public/' }
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "http://repo.spring.io/milestone" }
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+//repositories {
+//    mavenCentral()
+//    maven { url "http://repo.spring.io/snapshot" }
+//    maven { url "http://repo.spring.io/milestone" }
+//}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+//    compile("com.amazonaws:aws-java-sdk:1.5.5")
+    compile(files('libs/dynamodb-geo-1.0.0.jar'))
+    compile(files('libs/s2-geometry-java.jar'))
+    compile(files('libs/guava-r09.jar'))
+    compile("com.amazonaws:aws-java-sdk-dynamodb:1.11.138")
+}
